@@ -17,5 +17,5 @@ output.json
 .idea
 
 # build
-*/build
-*/coverage
+build
+coverage
