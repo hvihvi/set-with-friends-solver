@@ -1,9 +1,9 @@
-import { solve } from "./index";
+import { solve } from "./solve";
 import { Color, Motif, Number, Shape } from "./types";
 
 describe("solve", () => {
   it("should", () => {
-    expect(solve([], [], [], [])).toEqual([
+    expect(solve([])).toEqual([
       {
         color: Color.Green,
         motif: Motif.Full,

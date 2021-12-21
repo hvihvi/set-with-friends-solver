@@ -1,22 +1,22 @@
-export enum Shape {
+export const enum Shape {
   Squiggle,
   Circle,
   Square,
 }
 
-export enum Color {
+export const enum Color {
   Violet,
   Green,
   Red,
 }
 
-export enum Motif {
+export const enum Motif {
   Transparent,
   Stripe,
   Full,
 }
 
-export enum Number {
+export const enum Number {
   One,
   Two,
   Three,
