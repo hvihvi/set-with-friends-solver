@@ -1,27 +1,21 @@
 import { Card, Color, Motif, Number, Shape, Solution } from "./types";
 
 export const solve = (cards: Card[]): Solution => {
-  return [
-    {
-      color: Color.Green,
-      motif: Motif.Full,
-      number: Number.One,
-      shape: Shape.Circle,
-    },
-    {
-      color: Color.Green,
-      motif: Motif.Full,
-      number: Number.One,
-      shape: Shape.Square,
-    },
-    {
-      color: Color.Green,
-      motif: Motif.Full,
-      number: Number.One,
-      shape: Shape.Squiggle,
-    },
-  ];
+  const contains = containsCard(cards);
+  if (contains(findMissing(cards[0], cards[1]))) {
+    return [cards[0], cards[1], findMissing(cards[0], cards[1])];
+  }
+  return solve(shuffleArray(cards));
 };
+
+const containsCard = (cards: Card[]) => (card: Card) =>
+  cards.some(
+    (it) =>
+      it.color === card.color &&
+      it.motif === card.motif &&
+      it.number === card.number &&
+      it.shape === card.shape
+  );
 
 export const findMissing = (card1: Card, card2: Card) => ({
   color: findMissingDimension(card1.color, card2.color),
@@ -32,3 +26,12 @@ export const findMissing = (card1: Card, card2: Card) => ({
 
 export const findMissingDimension = (d1: 0 | 1 | 2, d2: 0 | 1 | 2) =>
   (6 - (d1 + d2)) % 3;
+
+const shuffleArray = (cards: Card[]) => {
+  const result = [...cards];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+};

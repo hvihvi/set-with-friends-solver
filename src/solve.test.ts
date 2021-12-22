@@ -21,26 +21,25 @@ describe("solve", () => {
     //when
     const output = solve(input);
     //then
-    expect(output).toEqual([
-      {
-        color: Color.Green,
-        motif: Motif.Transparent,
-        number: Number.One,
-        shape: Shape.Squiggle,
-      },
-      {
-        color: Color.Violet,
-        motif: Motif.Stripe,
-        number: Number.Two,
-        shape: Shape.Square,
-      },
-      {
-        color: Color.Red,
-        motif: Motif.Full,
-        number: Number.Three,
-        shape: Shape.Circle,
-      },
-    ]);
+    expect(output).toContainEqual({
+      color: Color.Green,
+      motif: Motif.Transparent,
+      number: Number.One,
+      shape: Shape.Squiggle,
+    });
+    expect(output).toContainEqual({
+      color: Color.Violet,
+      motif: Motif.Stripe,
+      number: Number.Two,
+      shape: Shape.Square,
+    });
+    expect(output).toContainEqual({
+      color: Color.Red,
+      motif: Motif.Full,
+      number: Number.Three,
+      shape: Shape.Circle,
+    });
+    expect(output).toHaveLength(3);
   });
   it("should solve example 2", () => {
     //given
@@ -61,26 +60,25 @@ describe("solve", () => {
     //when
     const output = solve(input);
     //then
-    expect(output).toEqual([
-      {
-        color: Color.Green,
-        motif: Motif.Stripe,
-        number: Number.One,
-        shape: Shape.Square,
-      },
-      {
-        color: Color.Red,
-        motif: Motif.Transparent,
-        number: Number.Two,
-        shape: Shape.Squiggle,
-      },
-      {
-        color: Color.Violet,
-        motif: Motif.Full,
-        number: Number.Three,
-        shape: Shape.Circle,
-      },
-    ]);
+    expect(output).toContainEqual({
+      color: Color.Green,
+      motif: Motif.Stripe,
+      number: Number.One,
+      shape: Shape.Square,
+    });
+    expect(output).toContainEqual({
+      color: Color.Red,
+      motif: Motif.Transparent,
+      number: Number.Two,
+      shape: Shape.Squiggle,
+    });
+    expect(output).toContainEqual({
+      color: Color.Violet,
+      motif: Motif.Full,
+      number: Number.Three,
+      shape: Shape.Circle,
+    });
+    expect(output).toHaveLength(3);
   });
 
   it("should solve example 3", () => {
@@ -105,26 +103,25 @@ describe("solve", () => {
     //when
     const output = solve(input);
     //then
-    expect(output).toEqual([
-      {
-        color: Color.Red,
-        motif: Motif.Stripe,
-        number: Number.One,
-        shape: Shape.Square,
-      },
-      {
-        color: Color.Red,
-        motif: Motif.Stripe,
-        number: Number.One,
-        shape: Shape.Squiggle,
-      },
-      {
-        color: Color.Red,
-        motif: Motif.Stripe,
-        number: Number.One,
-        shape: Shape.Circle,
-      },
-    ]);
+    expect(output).toContainEqual({
+      color: Color.Red,
+      motif: Motif.Stripe,
+      number: Number.One,
+      shape: Shape.Square,
+    });
+    expect(output).toContainEqual({
+      color: Color.Red,
+      motif: Motif.Stripe,
+      number: Number.One,
+      shape: Shape.Squiggle,
+    });
+    expect(output).toContainEqual({
+      color: Color.Red,
+      motif: Motif.Stripe,
+      number: Number.One,
+      shape: Shape.Circle,
+    });
+    expect(output).toHaveLength(3);
   });
 
   it("should solve example 4", () => {
@@ -149,26 +146,25 @@ describe("solve", () => {
     //when
     const output = solve(input);
     //then
-    expect(output).toEqual([
-      {
-        color: Color.Violet,
-        motif: Motif.Transparent,
-        number: Number.One,
-        shape: Shape.Square,
-      },
-      {
-        color: Color.Green,
-        motif: Motif.Transparent,
-        number: Number.Two,
-        shape: Shape.Square,
-      },
-      {
-        color: Color.Red,
-        motif: Motif.Transparent,
-        number: Number.Three,
-        shape: Shape.Square,
-      },
-    ]);
+    expect(output).toContainEqual({
+      color: Color.Violet,
+      motif: Motif.Transparent,
+      number: Number.One,
+      shape: Shape.Square,
+    });
+    expect(output).toContainEqual({
+      color: Color.Green,
+      motif: Motif.Transparent,
+      number: Number.Two,
+      shape: Shape.Square,
+    });
+    expect(output).toContainEqual({
+      color: Color.Red,
+      motif: Motif.Transparent,
+      number: Number.Three,
+      shape: Shape.Square,
+    });
+    expect(output).toHaveLength(3);
   });
 });
 
