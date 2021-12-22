@@ -1,12 +1,13 @@
 import {Card, Solution} from "./types";
 import {mapCardElementToColor, mapCardElementToMotif, mapCardElementToNumber, mapCardElementToShape} from "./scrapper";
 
-export const hintSolution = (solution: Solution) => {
-    solution.map(findCardInDom).forEach(cardToHint => cardToHint!.style.boxShadow = "0px 0px 10px 20px #FFEF53");
-}
+export const hintSolution = (solution: Solution) =>
+    solution.map(findCardInDom).forEach(cardToHint => cardToHint!.style.boxShadow = "0px 0px 10px 20px #FFEF53")
 
 export const clickSolution = (solution: Solution) => {
-    solution.map(findCardInDom).forEach(cardToHint => (cardToHint!.firstChild as HTMLDivElement).click());
+    const cardsToClick = solution.map(findCardInDom);
+    cardsToClick.forEach(cardToHint => (cardToHint!.firstChild as HTMLDivElement).click());
+    return !!cardsToClick.length;
 }
 
 const findCardInDom = (card: Card) => {
