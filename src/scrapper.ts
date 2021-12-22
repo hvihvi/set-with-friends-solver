@@ -1,9 +1,9 @@
 import {Card, Color, Motif, Shape} from "./types";
 
-const mapCardElementToNumber = (card: Element) =>
+export const mapCardElementToNumber = (card: Element) =>
     (card.firstChild as HTMLDivElement).childElementCount - 1;
 
-const mapCardElementToShape = (card: Element) => {
+export const mapCardElementToShape = (card: Element) => {
   const svgElement = card.firstChild!.firstChild!.firstChild as SVGElement;
   const shape = svgElement.getAttribute("href");
     if (shape === "#squiggle") return Shape.Squiggle;
@@ -12,7 +12,7 @@ const mapCardElementToShape = (card: Element) => {
     throw new Error();
 };
 
-const mapCardElementToColor = (card: Element) => {
+export const mapCardElementToColor = (card: Element) => {
   const svgElement = (card.firstChild!.firstChild as SVGElement).children[1] as SVGElement;
   const color = svgElement.getAttribute("stroke");
     if (color === "#800080") return Color.Violet;
@@ -21,7 +21,7 @@ const mapCardElementToColor = (card: Element) => {
     throw new Error();
 };
 
-const mapCardElementToMotif = (card: Element) => {
+export const mapCardElementToMotif = (card: Element) => {
     const svgElement = card.firstChild!.firstChild!.firstChild as SVGElement;
     if (svgElement.getAttribute("fill") === "transparent") {
         return Motif.Transparent;
