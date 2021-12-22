@@ -5,6 +5,10 @@ export const hintSolution = (solution: Solution) => {
     solution.map(findCardInDom).forEach(cardToHint => cardToHint!.style.boxShadow = "0px 0px 10px 20px #FFEF53");
 }
 
+export const clickSolution = (solution: Solution) => {
+    solution.map(findCardInDom).forEach(cardToHint => (cardToHint!.firstChild as HTMLDivElement).click());
+}
+
 const findCardInDom = (card: Card) => {
     const findCard = isMatchingCard(card);
     return (Array.from(document.querySelectorAll('div[style*="visibility: visible"]')) as HTMLDivElement[])
