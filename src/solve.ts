@@ -1,4 +1,4 @@
-import { Card, Color, Motif, Number, Shape, Solution } from "./types";
+import {Card, Solution} from "./types";
 
 export const solve = (cards: Card[]): Solution => {
   const contains = containsCard(cards);
