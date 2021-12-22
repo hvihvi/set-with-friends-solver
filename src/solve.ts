@@ -25,7 +25,11 @@ export const findMissing = (card1: Card, card2: Card) => ({
 });
 
 export const findMissingDimension = (d1: 0 | 1 | 2, d2: 0 | 1 | 2) =>
-  (6 - (d1 + d2)) % 3;
+  modulo3(3 - (d1 + d2));
+
+// % operator is not a real modulo, -1%3 equals -1:
+// https://web.archive.org/web/20090717035140if_/javascript.about.com/od/problemsolving/a/modulobug.htm
+export const modulo3 = (n: number) => ((n % 3) + 3) % 3;
 
 const shuffleArray = (cards: Card[]) => {
   const result = [...cards];
