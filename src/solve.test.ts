@@ -1,5 +1,5 @@
-import { solve } from "./solve";
-import { Color, Motif, Number, Shape } from "./types";
+import { findMissing, findMissingDimension, solve } from "./solve";
+import { Card, Color, Motif, Number, Shape } from "./types";
 
 describe("solve", () => {
   it("should solve example 1", () => {
@@ -169,5 +169,112 @@ describe("solve", () => {
         shape: Shape.Square,
       },
     ]);
+  });
+});
+
+describe("findMissing", () => {
+  it("should find missing card example 1", () => {
+    // given
+    const card1: Card = {
+      color: 1,
+      motif: 1,
+      number: 1,
+      shape: 1,
+    };
+    const card2: Card = {
+      color: 0,
+      motif: 0,
+      number: 0,
+      shape: 0,
+    };
+    // when
+    const output = findMissing(card1, card2);
+    //then
+    expect(output).toEqual({
+      color: 2,
+      motif: 2,
+      number: 2,
+      shape: 2,
+    });
+  });
+
+  it("should find missing card example 2", () => {
+    // given
+    const card1: Card = {
+      color: 1,
+      motif: 1,
+      number: 1,
+      shape: 1,
+    };
+    const card2: Card = {
+      color: 1,
+      motif: 1,
+      number: 0,
+      shape: 0,
+    };
+    // when
+    const output = findMissing(card1, card2);
+    //then
+    expect(output).toEqual({
+      color: 1,
+      motif: 1,
+      number: 2,
+      shape: 2,
+    });
+  });
+
+  it("should find missing card example 3", () => {
+    // given
+    const card1: Card = {
+      color: 1,
+      motif: 1,
+      number: 2,
+      shape: 2,
+    };
+    const card2: Card = {
+      color: 0,
+      motif: 0,
+      number: 0,
+      shape: 0,
+    };
+    // when
+    const output = findMissing(card1, card2);
+    //then
+    expect(output).toEqual({
+      color: 2,
+      motif: 2,
+      number: 1,
+      shape: 1,
+    });
+  });
+});
+
+describe("findMissingDimension", () => {
+  it("should find missing dimension1", () => {
+    expect(findMissingDimension(0, 0)).toEqual(0);
+  });
+  it("should find missing dimension2", () => {
+    expect(findMissingDimension(0, 1)).toEqual(2);
+  });
+  it("should find missing dimension3", () => {
+    expect(findMissingDimension(0, 2)).toEqual(1);
+  });
+  it("should find missing dimension4", () => {
+    expect(findMissingDimension(1, 0)).toEqual(2);
+  });
+  it("should find missing dimension5", () => {
+    expect(findMissingDimension(1, 1)).toEqual(1);
+  });
+  it("should find missing dimension6", () => {
+    expect(findMissingDimension(1, 2)).toEqual(0);
+  });
+  it("should find missing dimension7", () => {
+    expect(findMissingDimension(2, 0)).toEqual(1);
+  });
+  it("should find missing dimension8", () => {
+    expect(findMissingDimension(2, 1)).toEqual(0);
+  });
+  it("should find missing dimension9", () => {
+    expect(findMissingDimension(2, 2)).toEqual(2);
   });
 });
