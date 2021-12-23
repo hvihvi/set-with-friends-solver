@@ -1,34 +1,23 @@
-import { cp } from "fs";
-import { Card, Solution } from "./types";
-
-const combinations = ([head, ...tail]: any[]): any[] => {
-  if (tail.length > 0) {
-    return [
-      ...tail.map((tailValue) => [head, tailValue]),
-      ...combinations(tail),
-    ];
-  }
-  return [];
-};
+import { Card } from "./types";
 
 export const solve = ([firstCard, ...remainingCards]: Card[]): Card[] => {
   if (remainingCards.length === 0) {
     return [];
   }
-  const contains = containsCard(remainingCards);
-  const resultat = remainingCards.reduce((acc, curr) => {
-    return contains(findMissing(firstCard, curr))
-      ? [curr, firstCard, findMissing(firstCard, curr)]
-      : acc;
-  }, [] as Card[]);
+  const resultat = solveForCard(firstCard, remainingCards);
   if (resultat.length) {
     return resultat;
   }
   return solve(remainingCards);
 };
 
-const containsCard = (cards: Card[]) => (card: Card) =>
-  cards.some(
+const solveForCard = (firstCard: Card, remainingCards: Card[]): Card[] =>
+  remainingCards
+    .map((card) => [firstCard, card, findMissing(firstCard, card)])
+    .find((it) => containsCard(remainingCards, it[2])) ?? [];
+
+const containsCard = (remainingCards: Card[], card: Card) =>
+  remainingCards.some(
     (it) =>
       it.color === card.color &&
       it.motif === card.motif &&
