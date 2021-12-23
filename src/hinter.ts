@@ -4,7 +4,7 @@ import {mapCardElementToColor, mapCardElementToMotif, mapCardElementToNumber, ma
 export const hintSolution = (solution: Solution) =>
     solution.map(findCardInDom).forEach(cardToHint => cardToHint!.style.boxShadow = "0px 0px 10px 20px #FFEF53")
 
-export const clickSolution = (solution: Solution) => {
+export const clickSolution = (solution: Card[]) => {
     const cardsToClick = solution.map(findCardInDom);
     cardsToClick.forEach(cardToHint => (cardToHint!.firstChild as HTMLDivElement).click());
     return !!cardsToClick.length;

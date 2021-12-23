@@ -1,14 +1,30 @@
-import {Card, Solution} from "./types";
+import { cp } from "fs";
+import { Card, Solution } from "./types";
 
-export const solve = (cards: Card[], indexCard1: number = 0, indexCard2: number = 1): Solution => {
-  const contains = containsCard(cards);
-  if (contains(findMissing(cards[indexCard1], cards[indexCard2]))) {
-    return [cards[indexCard1], cards[indexCard2], findMissing(cards[indexCard1], cards[indexCard2])];
+const combinations = ([head, ...tail]: any[]): any[] => {
+  if (tail.length > 0) {
+    return [
+      ...tail.map((tailValue) => [head, tailValue]),
+      ...combinations(tail),
+    ];
   }
-  if (indexCard2 === cards.length - 1) {
-      return solve(cards, indexCard1 + 1, indexCard1 + 2);
+  return [];
+};
+
+export const solve = ([firstCard, ...remainingCards]: Card[]): Card[] => {
+  if (remainingCards.length === 0) {
+    return [];
   }
-  return solve(cards, indexCard1, indexCard2 + 1);
+  const contains = containsCard(remainingCards);
+  const resultat = remainingCards.reduce((acc, curr) => {
+    return contains(findMissing(firstCard, curr))
+      ? [curr, firstCard, findMissing(firstCard, curr)]
+      : acc;
+  }, [] as Card[]);
+  if (resultat.length) {
+    return resultat;
+  }
+  return solve(remainingCards);
 };
 
 const containsCard = (cards: Card[]) => (card: Card) =>
